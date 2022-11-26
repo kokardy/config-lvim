@@ -11,7 +11,7 @@ an executable
 -- general
 lvim.log.level = "debug"
 lvim.format_on_save = true
-lvim.colorscheme = "onedarker"
+lvim.colorscheme = "industry"
 -- to disable icons and use a minimalist setup, uncomment the following
 -- lvim.use_icons = false
 
@@ -21,6 +21,12 @@ lvim.builtin.lualine.style = "default"
 lvim.leader = "space"
 -- add your own keymapping
 lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
+lvim.keys.normal_mode["<S-h>"] = ":bp<cr>"
+lvim.keys.normal_mode["<S-l>"] = ":bn<cr>"
+
+lvim.keys.normal_mode["j"] = "gj"
+lvim.keys.normal_mode["k"] = "gk"
+
 -- unmap a default keymapping
 -- vim.keymap.del("n", "<C-Up>")
 -- override a default keymapping
@@ -108,9 +114,9 @@ local opts = {
     }
   }
 }
-require("lvim.lsp.manager").setup("pylsp", opts)
+-- require("lvim.lsp.manager").setup("pylsp", opts)
 
--- require("lvim.lsp.manager").setup("pyright", opts)
+require("lvim.lsp.manager").setup("pyright", opts)
 
 -- ---remove a server from the skipped list, e.g. eslint, or emmet_ls. !!Requires `:LvimCacheReset` to take effect!!
 -- ---`:LvimInfo` lists which server(s) are skiipped for the current filetype
@@ -131,8 +137,8 @@ require("lvim.lsp.manager").setup("pylsp", opts)
 -- -- set a formatter, this will override the language server formatting capabilities (if it exists)
 local formatters = require "lvim.lsp.null-ls.formatters"
 formatters.setup {
-  { command = "black", filetypes = { "python" } },
   { command = "isort", filetypes = { "python" } },
+  { command = "black", filetypes = { "python" } },
   -- {
   --   -- each formatter accepts a list of options identical to https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#Configuration
   --   command = "prettier",
@@ -148,6 +154,7 @@ formatters.setup {
 local linters = require "lvim.lsp.null-ls.linters"
 linters.setup {
   { command = "pyproject-flake8", filetypes = { "python" } },
+  { command = "mypy", filetypes = { "python" } },
   { command = "textlint", filetypes = { "markdown", "text" } },
 
   -- {
@@ -180,6 +187,8 @@ lvim.plugins = {
   { "plasticboy/vim-markdown" },
   { "iamcco/markdown-preview.vim" },
   { "mattn/vim-maketable" },
+  { "tyru/open-browser.vim" },
+  { "weirongxu/plantuml-previewer.vim" },
 }
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
