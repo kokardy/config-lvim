@@ -156,6 +156,7 @@ linters.setup {
   { command = "pyproject-flake8", filetypes = { "python" } },
   { command = "mypy", filetypes = { "python" } },
   { command = "textlint", filetypes = { "markdown", "text" } },
+  { command = "jsonlint", filetypes = { "json" } },
 
   -- {
   --   command = "mypy", filetypes = { "python" },
