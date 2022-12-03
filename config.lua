@@ -17,6 +17,8 @@ lvim.colorscheme = "industry"
 
 lvim.builtin.lualine.style = "default"
 
+vim.opt.fileencodings = { "utf-8", "sjis", "euc-jp" }
+
 -- keymappings [view all the defaults by pressing <leader>Lk]
 lvim.leader = "space"
 -- add your own keymapping
@@ -191,6 +193,9 @@ lvim.plugins = {
   { "tyru/open-browser.vim" },
   { "weirongxu/plantuml-previewer.vim" },
   { "aklt/plantuml-syntax" },
+
+  -- csv
+  { "mechatroner/rainbow_csv" }
 }
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
