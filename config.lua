@@ -9,7 +9,8 @@ an executable
 -- THESE ARE EXAMPLE CONFIGS FEEL FREE TO CHANGE TO WHATEVER YOU WANT
 
 -- general
-lvim.log.level = "warning"
+lvim.log.level = "warn"
+-- lvim.log.level = "debug"
 lvim.format_on_save = true
 lvim.colorscheme = "industry"
 -- to disable icons and use a minimalist setup, uncomment the following
@@ -141,6 +142,7 @@ local formatters = require "lvim.lsp.null-ls.formatters"
 formatters.setup {
   { command = "isort", filetypes = { "python" } },
   { command = "black", filetypes = { "python" } },
+  { command = "prettier", filetypes = { "markdown" } },
   -- {
   --   -- each formatter accepts a list of options identical to https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#Configuration
   --   command = "prettier",
@@ -157,7 +159,7 @@ local linters = require "lvim.lsp.null-ls.linters"
 linters.setup {
   { command = "pyproject-flake8", filetypes = { "python" } },
   { command = "mypy", filetypes = { "python" } },
-  { command = "textlint", filetypes = { "markdown", "text" } },
+  { command = "textlint", filetypes = { "text" } },
   { command = "jsonlint", filetypes = { "json" } },
 
   -- {
@@ -187,10 +189,21 @@ lvim.plugins = {
     "folke/trouble.nvim",
     cmd = "TroubleToggle",
   },
-  { "plasticboy/vim-markdown" },
-  { "iamcco/markdown-preview.vim" },
-  { "mattn/vim-maketable" },
   { "tyru/open-browser.vim" },
+  { "preservim/vim-markdown",
+    config = function()
+      vim.g.vim_markdown_folding_disabled = 1
+    end,
+    require = "godlygeek/tabular",
+  },
+  { "iamcco/markdown-preview.nvim",
+    run = "cd app && npm install",
+    ft = { "markdown" },
+    config = function()
+      vim.g.mkdp_browser = 'firefox'
+    end,
+  },
+  { "mattn/vim-maketable" },
   { "weirongxu/plantuml-previewer.vim" },
   { "aklt/plantuml-syntax" },
 
