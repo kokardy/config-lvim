@@ -209,6 +209,14 @@ lvim.plugins = {
     cmd = "TroubleToggle",
   },
 
+  {
+    "folke/todo-comments.nvim",
+    event = "BufRead",
+    config = function()
+      require("todo-comments").setup()
+    end,
+  },
+
   -- markdown
   { "preservim/vim-markdown",
     config = function()
