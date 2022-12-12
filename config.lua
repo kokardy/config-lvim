@@ -66,6 +66,7 @@ lvim.builtin.which_key.mappings["t"] = {
 }
 
 lvim.builtin.which_key.mappings["y"] = {
+  name = "+Yank",
   a = { 'ggVG"+y', "yank all" },
   r = { "<cmd>YankyRingHistory<cr>", "yanky ring history" },
 }
