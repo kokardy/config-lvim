@@ -66,7 +66,8 @@ lvim.builtin.which_key.mappings["t"] = {
 }
 
 lvim.builtin.which_key.mappings["y"] = {
-  a = { 'ggVG"+y', "yank all" }
+  a = { 'ggVG"+y', "yank all" },
+  r = { "<cmd>YankyRingHistory<cr>", "yanky ring history" },
 }
 
 -- TODO: User Config for predefined plugins
@@ -142,7 +143,7 @@ local formatters = require "lvim.lsp.null-ls.formatters"
 formatters.setup {
   { command = "isort", filetypes = { "python" } },
   { command = "black", filetypes = { "python" } },
-  { command = "prettier", filetypes = { "markdown" } },
+  { command = "remark", filetypes = { "markdown" } },
   -- {
   --   -- each formatter accepts a list of options identical to https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#Configuration
   --   command = "prettier",
@@ -182,14 +183,33 @@ linters.setup {
 
 -- Additional Plugins
 lvim.plugins = {
+  -- colorscheme
   -- {"folke/tokyonight.nvim"},
+
+  -- dependencies
+  { "tyru/open-browser.vim" },
+
+  -- utils
   { "tpope/vim-repeat" },
   { "tpope/vim-surround" },
+  { "t9md/vim-quickhl" },
+  { "gbprod/yanky.nvim",
+    config = function()
+      require("yanky").setup {
+        -- highlight = {
+        --   on_put = true,
+        --   on_yank = true,
+        --   timer = 500,
+        -- }
+      }
+    end },
+
   {
     "folke/trouble.nvim",
     cmd = "TroubleToggle",
   },
-  { "tyru/open-browser.vim" },
+
+  -- markdown
   { "preservim/vim-markdown",
     config = function()
       vim.g.vim_markdown_folding_disabled = 1
@@ -204,6 +224,8 @@ lvim.plugins = {
     end,
   },
   { "mattn/vim-maketable" },
+
+  -- plantuml
   { "weirongxu/plantuml-previewer.vim" },
   { "aklt/plantuml-syntax" },
 
