@@ -7,10 +7,9 @@ a global executable or a path to
 an executable
 ]]
 -- THESE ARE EXAMPLE CONFIGS FEEL FREE TO CHANGE TO WHATEVER YOU WANT
-
 -- general
-lvim.log.level = "warn"
--- lvim.log.level = "debug"
+-- lvim.log.level = "warn"
+lvim.log.level = "debug"
 lvim.format_on_save = true
 lvim.colorscheme = "industry"
 -- to disable icons and use a minimalist setup, uncomment the following
@@ -100,28 +99,44 @@ lvim.builtin.treesitter.ignore_install = { "haskell" }
 lvim.builtin.treesitter.highlight.enabled = true
 
 -- generic LSP settings
-
+--
+-- null-ls pyproject.toml
+lvim.lsp.null_ls.setup.root_dir = function(fname)
+  local util = require "lspconfig.util"
+  local root_files = {
+    "pyproject.toml",
+    "setup.py",
+    "setup.cfg",
+    "requirements.txt",
+    "Pipfile",
+    "manage.py",
+    "pyrightconfig.json",
+  }
+  return util.root_pattern(unpack(root_files))(fname) or util.root_pattern ".git" (fname) or util.path.dirname(fname)
+end
 -- ---@usage disable automatic installation of servers
 -- lvim.lsp.automatic_servers_installation = false
 
 -- ---configure a server manually. !!Requires `:LvimCacheReset` to take effect!!
 -- ---see the full default list `:lua print(vim.inspect(lvim.lsp.automatic_configuration.skipped_servers))`
--- vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "pyright" })
-local opts = {
-  settings = {
-    pylsp = {
-      plugins = {
-        pycodestyle = { enabled = false },
-        -- flake8 = { executable = "pflake8", enabled = true },
-
-        pylsp_mypy = { executable = "mypy", enabled = true },
-      }
-    }
-  }
-}
--- require("lvim.lsp.manager").setup("pylsp", opts)
-
+-- vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "pyright", "pylsp", "null-ls" })
+--
+local opts = {}
 require("lvim.lsp.manager").setup("pyright", opts)
+
+-- local pylsp_opts = {
+--   settings = {
+--     pylsp = {
+--       plugins = {
+--         pycodestyle = { enabled = false },
+--         -- flake8 = { executable = "pflake8", enabled = true },
+
+--         pylsp_mypy = { executable = "mypy", enabled = true },
+--       }
+--     },
+--   }
+-- }
+-- require("lvim.lsp.manager").setup("pylsp", pylsp_opts)
 
 -- ---remove a server from the skipped list, e.g. eslint, or emmet_ls. !!Requires `:LvimCacheReset` to take effect!!
 -- ---`:LvimInfo` lists which server(s) are skiipped for the current filetype
@@ -138,6 +153,7 @@ require("lvim.lsp.manager").setup("pyright", opts)
 --   --Enable completion triggered by <c-x><c-o>
 --   buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
 -- end
+--
 
 -- -- set a formatter, this will override the language server formatting capabilities (if it exists)
 local formatters = require "lvim.lsp.null-ls.formatters"
