@@ -8,8 +8,8 @@ an executable
 ]]
 -- THESE ARE EXAMPLE CONFIGS FEEL FREE TO CHANGE TO WHATEVER YOU WANT
 -- general
--- lvim.log.level = "warn"
-lvim.log.level = "debug"
+lvim.log.level = "warn"
+-- lvim.log.level = "debug"
 lvim.format_on_save = true
 lvim.colorscheme = "industry"
 -- to disable icons and use a minimalist setup, uncomment the following
@@ -291,6 +291,8 @@ lvim.plugins = {
       }
     end
   },
+  { -- typo file
+    "tyru/stoptypofile.vim" },
 }
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
