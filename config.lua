@@ -78,6 +78,10 @@ lvim.builtin.which_key.mappings["y"] = {
   a = { 'ggVG"+y', "yank all" },
   r = { "<cmd>YankyRingHistory<cr>", "yanky ring history" },
 }
+lvim.builtin.which_key.mappings["S"] = {
+  name = "+Sidebar",
+  t = { "<cmd>SidebarNvimToggle<cr>", "Toggle sidebar" },
+}
 
 -- TODO: User Config for predefined plugins
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
