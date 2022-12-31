@@ -342,6 +342,16 @@ lvim.plugins = {
       }
     end },
 
+
+  -- sidebar
+  { "sidebar-nvim/sidebar.nvim",
+    config = function()
+      local sidebar = require("sidebar-nvim")
+      sidebar.setup({
+        -- open = true,
+      })
+    end,
+  },
 }
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
