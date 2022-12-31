@@ -83,6 +83,10 @@ lvim.builtin.which_key.mappings["S"] = {
   t = { "<cmd>SidebarNvimToggle<cr>", "Toggle sidebar" },
 }
 
+lvim.builtin.which_key.mappings["s"]["m"] = {
+  "<cmd>Telescope marks<cr>", "marks"
+}
+
 -- TODO: User Config for predefined plugins
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
 lvim.builtin.alpha.active = true
