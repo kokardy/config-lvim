@@ -14,10 +14,19 @@ lvim.format_on_save = true
 lvim.colorscheme = "industry"
 -- to disable icons and use a minimalist setup, uncomment the following
 -- lvim.use_icons = false
-
-lvim.builtin.lualine.style = "default"
-
 vim.opt.fileencodings = { "utf-8", "sjis", "euc-jp" }
+
+
+-- lualine
+lvim.builtin.lualine.style = "default"
+-- lvim.builtin.lualine.style = "lvim"
+local filename = {
+  "filename",
+  file_status = true,
+  path = 1,
+}
+lvim.builtin.lualine.sections.lualine_c = { filename, }
+
 
 -- keymappings [view all the defaults by pressing <leader>Lk]
 lvim.leader = "space"
