@@ -380,6 +380,26 @@ lvim.plugins = {
       lvim.builtin.treesitter.matchup.enable = true
     end,
   },
+
+  { "CRAG666/code_runner.nvim",
+    filetype = {
+      -- java = "cd $dir && javac $fileName && java $fileNameWithoutExt",
+      python = "python3 -u",
+      -- typescript = "deno run",
+      rust = "cd $dir && rustc $fileName && $dir/$fileNameWithoutExt"
+    },
+    config = function()
+      local _opts = { noremap = true, silent = false }
+      vim.keymap.set('n', '<leader>r', ':RunCode<CR>', _opts)
+      vim.keymap.set('n', '<leader>rf', ':RunFile<CR>', _opts)
+      vim.keymap.set('n', '<leader>rft', ':RunFile tab<CR>', _opts)
+      vim.keymap.set('n', '<leader>rp', ':RunProject<CR>', _opts)
+      vim.keymap.set('n', '<leader>rc', ':RunClose<CR>', _opts)
+      vim.keymap.set('n', '<leader>crf', ':CRFiletype<CR>', _opts)
+      vim.keymap.set('n', '<leader>crp', ':CRProjects<CR>', _opts)
+    end
+  },
+
 }
 
 
