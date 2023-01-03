@@ -370,8 +370,16 @@ lvim.plugins = {
       vim.keymap.set('n', '*', function() require("lasterisk").search() end)
       vim.keymap.set('n', 'g*', function() require("lasterisk").search({ is_whole = false }) end)
       vim.keymap.set('x', 'g*', function() require("lasterisk").search({ is_whole = false }) end)
-    end
-  }
+    end,
+  },
+
+  -- matchup
+  { "andymass/vim-matchup",
+    setup = function()
+      vim.g.matchup_matchparen_offscreen = { method = "popup" }
+      lvim.builtin.treesitter.matchup.enable = true
+    end,
+  },
 }
 
 
