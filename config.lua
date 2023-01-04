@@ -11,7 +11,7 @@ an executable
 lvim.log.level = "warn"
 -- lvim.log.level = "debug"
 lvim.format_on_save = true
-lvim.colorscheme = "industry"
+lvim.colorscheme = "tokyonight-night"
 -- to disable icons and use a minimalist setup, uncomment the following
 -- lvim.use_icons = false
 vim.opt.fileencodings = { "utf-8", "sjis", "euc-jp" }
@@ -221,7 +221,9 @@ linters.setup {
 -- Additional Plugins
 lvim.plugins = {
   -- colorscheme
-  -- {"folke/tokyonight.nvim"},
+  { "folke/tokyonight.nvim" },
+  { "morhetz/gruvbox" },
+  { "rebelot/kanagawa.nvim" },
 
   -- dependencies
   { "tyru/open-browser.vim" },
@@ -402,6 +404,7 @@ lvim.plugins = {
       vim.keymap.set('n', '<leader>crp', ':CRProjects<CR>', _opts)
     end
   },
+
 
 }
 
