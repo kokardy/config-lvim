@@ -124,6 +124,7 @@ lvim.lsp.null_ls.setup.root_dir = function(fname)
   local util = require "lspconfig.util"
   local root_files = {
     "pyproject.toml",
+    "package.json",
     "setup.py",
     "setup.cfg",
     "requirements.txt",
