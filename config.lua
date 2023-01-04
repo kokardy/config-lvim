@@ -15,6 +15,8 @@ lvim.colorscheme = "industry"
 -- to disable icons and use a minimalist setup, uncomment the following
 -- lvim.use_icons = false
 vim.opt.fileencodings = { "utf-8", "sjis", "euc-jp" }
+vim.opt.cursorline = true
+vim.opt.cursorcolumn = true
 
 
 -- lualine
@@ -402,6 +404,13 @@ lvim.plugins = {
 
 }
 
+vim.api.nvim_create_autocmd("BufEnter", {
+  pattern = "*",
+  callback = function()
+    vim.api.nvim_set_hl(0, "CursorLine", { bg = "#252525" })
+    vim.api.nvim_set_hl(0, "CursorColumn", { bg = "#252525" })
+  end,
+})
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 -- vim.api.nvim_create_autocmd("BufEnter", {
