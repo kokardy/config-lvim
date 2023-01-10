@@ -231,8 +231,17 @@ lvim.plugins = {
   { "tyru/open-browser.vim" },
 
   -- utils
-  { "tpope/vim-repeat" },
-  { "tpope/vim-surround" },
+  -- { "tpope/vim-repeat" },
+  -- { "tpope/vim-surround" },
+
+  { "kylechui/nvim-surround",
+    config = function()
+      require("nvim-surround").setup({
+        -- Configuration here, or leave empty to use defaults
+      })
+    end,
+  },
+
   { "t9md/vim-quickhl" },
   { "gbprod/yanky.nvim",
     config = function()
@@ -407,6 +416,70 @@ lvim.plugins = {
     end
   },
 
+  -- cursor move highlight
+  { 'edluffy/specs.nvim',
+    config = function()
+      require('specs').setup {
+        show_jumps       = true,
+        min_jump         = 5,
+        popup            = {
+          delay_ms = 0, -- delay before popup displays
+          inc_ms = 10, -- time increments used for fade/resize effects
+          blend = 10, -- starting blend, between 0-100 (fully transparent), see :h winblend
+          width = 10,
+          winhl = "PMenu",
+          fader = require('specs').linear_fader,
+          resizer = require('specs').shrink_resizer
+        },
+        ignore_filetypes = {},
+        ignore_buftypes  = {
+          nofile = true,
+        },
+      }
+    end },
+
+  { "stonelasley/flare.nvim",
+    config = function()
+      require('flare').setup {
+        enabled = true, -- disable highlighting
+        hl_group = "IncSearch", -- set highlight group used for highlight
+        x_threshold = 5, -- column changes greater than this number trigger highlight
+        y_threshold = 3, -- row changes greater than this number trigger highlight
+        expanse = 10, -- highlight will expand to the left and right of cursor up to this amount (depending on space available)
+        file_ignore = { -- suppress highlighting for files of this type
+          "NvimTree",
+          "fugitive",
+          "TelescopePrompt",
+          "TelescopeResult",
+        },
+        fade = true, -- if false will flash highlight for entire area similar to 'vim.highlight.on_yank'
+        underline = false, -- if true will use more subtle underline highlight. Underline highlight can also be accomplished by setting hl_group
+        timeout = 150, -- timeout delay
+      }
+    end },
+
+
+  -- outline
+  { "stevearc/aerial.nvim",
+    config = function()
+      require('aerial').setup({
+        -- optionally use on_attach to set keymaps when aerial has attached to a buffer
+        on_attach = function(bufnr)
+          -- Jump forwards/backwards with '{' and '}'
+          vim.keymap.set('n', '{', '<cmd>AerialPrev<CR>', { buffer = bufnr })
+          vim.keymap.set('n', '}', '<cmd>AerialNext<CR>', { buffer = bufnr })
+        end
+      })
+
+      -- You probably also want to set a keymap to toggle aerial
+      vim.keymap.set('n', '<leader>o', '<cmd>AerialToggle!<CR>')
+    end
+  },
+
+  -- typo
+  { 'poljar/typos.nvim',
+    -- config = function() require("typo").setup() end,
+  },
 
 }
 
