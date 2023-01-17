@@ -93,6 +93,9 @@ lvim.builtin.which_key.mappings["s"]["m"] = {
 lvim.builtin.which_key.mappings["f"] = {
   "<cmd>Telescope find_files<cr>", "find files"
 }
+lvim.builtin.which_key.mappings["b"]["f"] = {
+  "<cmd>Telescope buffers<cr>", "find buffers"
+}
 
 -- TODO: User Config for predefined plugins
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
