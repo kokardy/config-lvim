@@ -502,6 +502,9 @@ lvim.plugins = {
     end
   },
 
+  -- git commit comment
+  {"rhysd/committia.vim"},
+
 }
 
 vim.api.nvim_create_autocmd("BufEnter", {
