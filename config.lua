@@ -96,6 +96,9 @@ lvim.builtin.which_key.mappings["f"] = {
 lvim.builtin.which_key.mappings["b"]["f"] = {
   "<cmd>Telescope buffers<cr>", "find buffers"
 }
+lvim.builtin.which_key.mappings["h"] = {
+  "<cmd>HopWord<cr>", "Hop word"
+}
 
 -- TODO: User Config for predefined plugins
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
@@ -487,6 +490,16 @@ lvim.plugins = {
   -- typo
   { 'poljar/typos.nvim',
     -- config = function() require("typo").setup() end,
+  },
+
+  -- hop
+  {
+    'phaazon/hop.nvim',
+    branch = 'v2', -- optional but strongly recommended
+    config = function()
+      -- you can configure Hop the way you like here; see :h hop-config
+      require 'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
+    end
   },
 
 }
