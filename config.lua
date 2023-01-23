@@ -454,9 +454,9 @@ lvim.plugins = {
       require('flare').setup {
         enabled = true, -- disable highlighting
         hl_group = "IncSearch", -- set highlight group used for highlight
-        x_threshold = 2, -- column changes greater than this number trigger highlight
-        y_threshold = 2, -- row changes greater than this number trigger highlight
-        expanse = 4, -- highlight will expand to the left and right of cursor up to this amount (depending on space available)
+        x_threshold = 20, -- column changes greater than this number trigger highlight
+        y_threshold = 5, -- row changes greater than this number trigger highlight
+        expanse = 2, -- highlight will expand to the left and right of cursor up to this amount (depending on space available)
         file_ignore = { -- suppress highlighting for files of this type
           "NvimTree",
           "fugitive",
@@ -503,7 +503,14 @@ lvim.plugins = {
   },
 
   -- git commit comment
-  {"rhysd/committia.vim"},
+  { "rhysd/committia.vim" },
+
+  -- easy-align
+  { "junegunn/vim-easy-align",
+    config = function()
+      local _opts = { noremap = true, silent = false }
+      vim.keymap.set('v', '<leader><leader>\\', ':EasyAlign*<Bar><CR>', _opts)
+    end }
 
 }
 
